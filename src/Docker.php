@@ -65,6 +65,9 @@ class Docker extends Client
      */
     public function imageCreate(string $inputImage, array $queryParameters = [], array $headerParameters = [], string $fetch = self::FETCH_OBJECT)
     {
+        if (isset($headerParameters['X-Registry-Auth']) && $headerParameters['X-Registry-Auth'] instanceof AuthConfig) {
+            $headerParameters['X-Registry-Auth'] = \base64_encode($this->serializer->serialize($headerParameters['X-Registry-Auth'], 'json'));
+        }
         return $this->executePsr7Endpoint(new ImageCreate($inputImage, $queryParameters, $headerParameters), $fetch);
     }
 
