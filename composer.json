@@ -49,5 +49,8 @@
         }
     },
     "prefer-stable": true,
-    "minimum-stability": "dev"
+    "minimum-stability": "dev",
+    "repositories": [
+        { "type": "vcs", "url": "https://github.com/echoCTF/docker-php-api.git" }
+    ]
 }
